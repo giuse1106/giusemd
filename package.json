@@ -30,7 +30,6 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
-    "@bochilteam/scraper": "^4.2.4",
     "@brandond/findthelyrics": "^2.0.5",
     "@green-code/music-track-data": "^2.0.3",
     "@sasmeee/igdl": "npm:@sasmeee/igdl",
@@ -93,7 +92,7 @@
     "wa-sticker-formatter": "^4.3.2",
     "yargs": "^17.3.1",
     "yt-search": "^2.10.3",
-    "ytdl-core": "github:khlevon/node-ytdl-core#v4.11.4-patch.2"
+    "yt-dlp": "^2024.05.16"
   },
   "devDependencies": {
     "eslint": "^8.45.0",
