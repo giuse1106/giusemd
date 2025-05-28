@@ -100,6 +100,7 @@ const handleCommand = async (msg, { conn, text, usedPrefix, command }) => {
                     body: "꧁ ĝ̽̓̀͑ỉ͔͖̜͌ư̡͕̭̇s̠҉͍͊ͅẹ̿͋̒̕ẹ̿͋̒̕ ꧂ 「 ᵇᵒᵗ 」",
                     mediaType: 1,
                     previewType: 0,
+                    renderLargerThumbnail: true,
                     mediaUrl: url,
                     sourceUrl: url,
                     thumbnail: thumbData // Puoi anche commentare questa riga se non vuoi l'anteprima del thumbnail
