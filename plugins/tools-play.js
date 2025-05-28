@@ -80,8 +80,6 @@ const handleCommand = async (msg, { conn, text, usedPrefix, command }) => {
         const { title, thumbnail, timestamp, views, ago, url, author } = video;
         const formattedViews = new Intl.NumberFormat().format(views);
         const videoInfo = `
-*INFO CANZONE*
-
 *Titolo:* ${title}
 *Durata:* ${timestamp}
 *Visualizzazioni:* ${formattedViews}
@@ -102,6 +100,7 @@ const handleCommand = async (msg, { conn, text, usedPrefix, command }) => {
                     previewType: 0,
                     mediaUrl: url,
                     sourceUrl: url,
+                    renderLargerThumbnail: true,
                     thumbnail: thumbData // Puoi anche commentare questa riga se non vuoi l'anteprima del thumbnail
                 }
             }
