@@ -80,11 +80,13 @@ const handleCommand = async (msg, { conn, text, usedPrefix, command }) => {
         const { title, thumbnail, timestamp, views, ago, url, author } = video;
         const formattedViews = new Intl.NumberFormat().format(views);
         const videoInfo = `
-*Titolo:* ${title}
-*Durata:* ${timestamp}
-*Visualizzazioni:* ${formattedViews}
-*Canale:* ${author?.name || "Sconosciuto"}
-*Pubblicato:* ${ago}
+🎵*Ecco la tua canzone: 🎵
+
+⭐ *Titolo:* ${title}
+⌛ *Durata:* ${timestamp}
+👀 *Visualizzazioni:* ${formattedViews}
+👥 *Canale:* ${author?.name || "Sconosciuto"}
+✅ *Pubblicato:* ${ago}
 `.trim();
 
         const thumbData = (await conn.getFile(thumbnail))?.data;
