@@ -1,0 +1,45 @@
+// © by Giuse
+import { jidNormalizedUser } from '@whiskeysockets/baileys';
+import fetch from 'node-fetch'; // Assicurati di avere node-fetch installato (npm install node-fetch)
+
+let handler = async (message, { conn, usedPrefix }) => {
+    let targetJid;
+
+    if (message.mentionedJid && message.mentionedJid.length > 0) {
+        // Caso: .pic @user
+        targetJid = message.mentionedJid[0];
+    } else if (message.quoted && message.quoted.sender) {
+        // Caso: .pic <risposta a messaggio>
+        targetJid = message.quoted.sender;
+    } else {
+        // Caso: .pic (utente che ha eseguito il comando)
+        targetJid = message.sender;
+    }
+
+    try {
+        const ppUrl = await conn.profilePictureUrl(jidNormalizedUser(targetJid), 'image');
+        await conn.sendMessage(message.chat, {
+            image: { url: ppUrl },
+            caption: "*© Powered by GiuseMD*",
+            contextInfo: {
+                // Questo crea la risposta diretta al messaggio originale
+                // Se vuoi che il bot risponda al suo stesso messaggio inviato,
+                // dovresti salvare il risultato di sendMessage e usarlo qui.
+                // Per una risposta al messaggio dell'utente, questa è la strada.
+                // Se vuoi un "reply" in stile WhatsApp, usa quoted: message come sotto.
+            }
+        }, { quoted: message }); // Aggiunto quoted: message per la risposta diretta
+
+    } catch (error) {
+        console.error("Errore nel recupero della foto profilo:", error);
+        await conn.sendMessage(message.chat, {
+            text: "[⚠️] Impossibile recuperare la foto, l'utente non ne ha una. Se questo errore persiste, ma la foto è presente, controlla le impostazioni della Privacy o se il bot è bloccato da quell'utente."
+        }, { quoted: message });
+    }
+};
+
+handler.help = ["pic", "pp", "profilepic"];
+handler.tags = ['utility']; // Puoi scegliere un tag appropriato
+handler.command = /^(pic|pp|profilepic)$/i;
+
+export default handler;
